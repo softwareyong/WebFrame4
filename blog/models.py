@@ -12,3 +12,6 @@ class Post(models.Model):
 
     def __str__(self):
         return f'[{self.pk}] {self.title}' #pk:고유번호
+
+    def get_absolute_url(self):
+        return f'/blog/{self.pk}/' # blog밑에 자동적으로 주소 뒤에 붙은 걸 호출한다.
