@@ -9,8 +9,12 @@ class PostList(ListView): #ListView를 상속받을 꺼임, 원래있는 라이�
                         # 근데 수동으로 바꿀 수 있음.
                         # template_name = 'blog/post_list.html' 이렇게 하면 바뀜
     model = Post
-    ordinary = '-pk'
+    ordering = '-pk'
     # template_name = 'blog/post_list.html'
+
+class PostDetail(DetailView):
+    model = Post
+    template_name = 'blog/single_post_page.html'
 
 # def index(request):
 #     posts = Post.objects.all().order_by('-pk')
@@ -27,16 +31,17 @@ class PostList(ListView): #ListView를 상속받을 꺼임, 원래있는 라이�
 #             'posts':posts,
 #         } # 데이터를 넘길 때 json형식으로, index.html에게 넘기기, index로 가셈 이제, 확인
 #     )
-def single_post_page(request, pk):
-    post = Post.objects.get(pk=pk) # 전달인자로 pk가 오면 여기에 해당하는 post 1개만 가져오기
-                                    # select에 조건문을 달아주는 개념임
-                                    # 이제 post를 넘겨줘야 한다.
-                                # 넘겨주는 방법은?
-                                # 밑에처럼 json형식으로 넘겨준다.
-    return render(
-        request,
-        'blog/single_post_page.html',
-        {
-            'post':post,
-        }
-    )
+
+# def single_post_page(request, pk):
+#     post = Post.objects.get(pk=pk) # 전달인자로 pk가 오면 여기에 해당하는 post 1개만 가져오기
+#                                     # select에 조건문을 달아주는 개념임
+#                                     # 이제 post를 넘겨줘야 한다.
+#                                 # 넘겨주는 방법은?
+#                                 # 밑에처럼 json형식으로 넘겨준다.
+#     return render(
+#         request,
+#         'blog/single_post_page.html',
+#         {
+#             'post':post,
+#         }
+#     )

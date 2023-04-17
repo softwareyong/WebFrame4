@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>blog</title>
+</head>
+<body>
+    <nav>
+        <a href="/">HOME</a>
+    </nav>
+    <h2>post list</h2>
+
+<!--    for p in posts --> <!-- 1. 스스로 만들때-->
+    {% for p in post_list %} <!-- 2. post 클래스를 이용할때, 안 지정해주면 post_list 모델명 list로 바꿔줘야 제대로 받아옴-->
+    <hr />
+<!--    <h3><a href="{{ p.pk }}/">{{ p.title }} </a></h3>-->
+    <h3><a href="{{ p.get_absolute_url }}">{{ p.title }} </a></h3> <!-- 이 함수를 부르면 그 주소를 반환-->
+    <p>{{p.created_at}}</p>
+    <p>{{p.content}}</p>  <!--  필드를 가져옴 -->
+    <!--    <h3>{{ p }} </h3>
+    <h3>{{ p.pk }} </h3> -->
+
+    {% endfor %}
+
+</body>
+</html>

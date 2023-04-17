@@ -117,7 +117,14 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+import os
+
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/media/' # url path를 의미한다.
+MEDIA_ROOT = os.path.join(BASE_DIR, '_media') # server local directiroy
+# ==> 얘네들은 고정된 주소를 의미한다.
+# BASE_DIR==웹프로젝트 디렉토리를 의마한다,
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

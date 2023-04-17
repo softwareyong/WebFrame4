@@ -9,7 +9,8 @@ urlpatterns = [
                                         # 근데 이거는 클래스라 동작으로 못해
                                         # 그래서 함수를 호출해준다 as_view
 
-    path('<int:pk>/', views.single_post_page), #pk라는 정수가 1개 들어온다는 뜻,
+    path('<int:pk>/', views.PostDetail.as_view())
+    # path('<int:pk>/', views.single_post_page), #pk라는 정수가 1개 들어온다는 뜻,
         # 프라이머리키에 따라서 보여주는 화면을 다르게 할꺼임
         # 따라서 views에 pk라는 전달인자를 1개 씀
         # def single_post_page(request, pk):
