@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post, Category # 데이터 베이스를 접근하기 위해
+from .models import Post, Category, Comment # 데이터 베이스를 접근하기 위해
 from django.core.exceptions import PermissionDenied
-from .forms import CommentForm, Comment
+from .forms import CommentForm
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 
-#Create your views here.
 def csrf_failure(request, reason=""):
     return redirect('/blog/')
 
@@ -73,7 +72,6 @@ def category_page(request, slug):
         }
     )
 
-
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
     fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category', 'tags']
@@ -85,8 +83,6 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
             return super(PostUpdate, self).dispatch(request, *args, **kwargs)
         else:
             raise PermissionDenied
-
-
 
 def new_comment(request, pk):
     if request.user.is_authenticated:
@@ -118,7 +114,6 @@ def delete_comment(request, pk):
 class CommentUpdate(LoginRequiredMixin, UpdateView):
     model = Comment  # 자동으로 댓글 수정 폼에 내용 채워라?
     form_class = CommentForm
-
     # comment_form.html -> 이걸 자동으로 찾음. 안 만들면, 못 찾는다고 에러 뜸!
 
     def dispatch(self, request, *args, **kwargs):
