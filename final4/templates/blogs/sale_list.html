@@ -1,0 +1,56 @@
+{% extends 'blogs/base_sale.html' %}
+
+{% block main_content %}
+<h2> Product List in Cart </h2>
+
+<div class="media">
+    <div class="media-body">
+
+        {% for p in sale_list %}
+
+        <div>
+          <div class="media border border-primary d-inline-block-flex p-2">
+            <div class="media-body">
+              <h4 class="mt-0">{{p.product}}</h4>
+              <p class="mb-1">{{p.user}}</p>
+              <span class="mb-1">개당 {{p.price}} 원 원 x {{p.count}} 개 구입</span>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+        <div class="card">
+          <div class = "card-header">
+            <h4 >전체 구매 금액은 6460 입니다.</h4>
+          </div>
+        </div>
+
+<!--        {% for p in cart_List %}-->
+<!--        <div>-->
+<!--            <div class="media border border-primary d-inline-block-flex p-2">-->
+<!--                <img src="https://picsum.photos/seed/{{p.pk}}/100/100" class="align-self-center mr-3"-->
+<!--                     alt="random image">-->
+<!--                <div class="media-body">-->
+<!--                    <h4 class="mt-0">{{ p.name }}</h4>-->
+<!--                    <p class="mb-1">{{ p.description }}</p>-->
+<!--                    <span class="mb-1">{{ p.price }} 원</span>-->
+<!--                    &lt;!&ndash; 아래 버튼은 로그인 되어 있는 상태에만 보임 &ndash;&gt;-->
+<!--                    {% if user.is_authenticated %} &lt;!&ndash; user가 로그인되어있다면 &ndash;&gt;-->
+<!--                    <a class="btn btn-outline-primary btn-sm" href="/final4/product/{{p.pk}}/"><small>구매하기</small></a>-->
+<!--                    {% endif %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+
+
+
+
+    </div>
+</div>
+<hr>
+
+{% endblock %}
+
+

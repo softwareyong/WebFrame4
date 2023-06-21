@@ -37,7 +37,7 @@
                         {% endif %}
 
                     </header>
-                    <!-- Preview image figure-->
+                    <!-- Preview image figure, 만약 이미지 있으면 보여주고, 없으면 random image-->
                     <figure class="mb-4">
                         {% if post.head_image %}
                             <img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="{{ post.title }} head image" />
@@ -45,11 +45,12 @@
                             <img class="img-fluid rounded" src="https://picsum.photos/seed/{{post.id}}/800/200" alt="random image" />
                         {% endif %}
                     </figure>
-                    <!-- Post content-->
+
+                    <!-- Post content, post에 해당하는 글 적기-->
                     <section class="mb-5">
                         <p class="fs-5 mb-4">{{ post.content | linebreaksbr }}</p>
 
-                        <!--tag area-->
+                        <!--tag area tag적혀있는곳, 링크는 아니고 태그들 for문으로 나열-->
                         {% if post.tags.exists %}
                             <i class = "fas fa-tags"></i>
                             {% for tag in post.tags.all %}
@@ -83,7 +84,8 @@
                         <div class="card-header">Leave a Comment</div>
                         <div class="card-body">
                             {% if user.is_authenticated %}
-                            <!-- Comment form-->
+
+                            <!-- Comment form-, 새로운 댓글 적는곳-->
                             <form class="mb-4" id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
                                 {% csrf_token %}
                                 <div class="form-group">
@@ -126,13 +128,18 @@
                                 </div>
                                     {% endif %}
 
-                                    <div class="fw-bold">
+                                    <!-- 댓글중에 이름,시간 -->
+                                    <span class="fw-bold">
                                         {{ comment.author.username }} &nbsp;&nbsp;<small class="text-muted">{{comment.created_at}}</small>
-                                    </div>
+                                    </span>
+                                    <!-- 글자 cntent -->
                                     <div> {{ comment.content | linebreaks }}</div>
+
+                                    <!-- 시간 update되었을 때, update 시각 -->
                                     {% if comment.created_at != comment.modified_at %}
                                         <p class="text-muted float-right"><small>Updated: {{ comment.modified_at }}</small></p>
                                     {% endif %}
+
                                 </div>
                             </div>
                             {% endfor %}

@@ -5,7 +5,7 @@ urlpatterns = [
     # path('', views.index), # 블로그에 들어와서 아무것도 치지 않았다면 view의 index를 보여줘라, server/blog/ 까지 온상태임, 만약에 /이거 붙이면 ==> server/ 이렇게로 바뀜 # '' 그냥 아무것도 안써야, server/blog/를 타고 왔기에 이주소로 남겨져 있음.
     path('search/<str:q>/', views.PostSearch.as_view()),
     path('', views.PostList.as_view()), #views.PostList쓰면 자동으로 가져옴 # 근데 이거는 클래스라 동작으로 못해 # 그래서 함수를 호출해준다 as_view
-    path('<int:pk>/new_comment/', views.new_comment), #/blog.1/new_comment/
+    path('<int:pk>/new_comment/', views.new_comment), #/blog/1/new_comment/
     path('update_comment/<int:pk>/',views.CommentUpdate.as_view()),# ex) /blog/update_comment/2
     path('delete_comment/<int:pk>/', views.delete_comment),# ex) /blog/delete_comment/2
 

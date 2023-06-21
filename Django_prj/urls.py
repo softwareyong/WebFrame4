@@ -6,6 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('final4/', include('final4.urls')),
     path('admin/', admin.site.urls),
     path('', include('single_pages.urls')), # 없으면 싱글페이지 url로 가라
     path('blog/', include('blog.urls')),

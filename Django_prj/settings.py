@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     'blog',
     'single_pages',
+    'final4',
 ]
 
 MIDDLEWARE = [
